@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
-rm -rf $HOME/.minid
-MINID_BIN=$(which minid)
-if [ -z "$MINID_BIN" ]; then
+rm -rf $HOME/.bvchain
+BVCHAIN_BIN=$(which bvchain)
+if [ -z "$BVCHAIN_BIN" ]; then
     GOBIN=$(go env GOPATH)/bin
-    MINID_BIN=$(which $GOBIN/minid)
+    BVCHAIN_BIN=$(which $GOBIN/bvchain)
 fi
 
-if [ -z "$MINID_BIN" ]; then
-    echo "please verify minid is installed"
+if [ -z "$BVCHAIN_BIN" ]; then
+    echo "please verify bvchain is installed"
     exit 1
 fi
 
-# configure minid
-$MINID_BIN config set client chain-id demo
-$MINID_BIN config set client keyring-backend test
-$MINID_BIN keys add alice
-$MINID_BIN keys add bob
-$MINID_BIN init test --chain-id demo --default-denom mini
+# configure bvchain
+$BVCHAIN_BIN config set client chain-id bvchain-test-1
+$BVCHAIN_BIN config set client keyring-backend test
+$BVCHAIN_BIN keys add kh
+$BVCHAIN_BIN keys add hh
+$BVCHAIN_BIN init test --chain-id bvchain-test-1 --default-denom ubvt
 # update genesis
-$MINID_BIN genesis add-genesis-account alice 10000000mini --keyring-backend test
-$MINID_BIN genesis add-genesis-account bob 1000mini --keyring-backend test
+$BVCHAIN_BIN genesis add-genesis-account kh 10000000ubvt --keyring-backend test
+$BVCHAIN_BIN genesis add-genesis-account hh 1000ubvt --keyring-backend test
 # create default validator
-$MINID_BIN genesis gentx alice 1000000mini --chain-id demo
-$MINID_BIN genesis collect-gentxs
+$BVCHAIN_BIN genesis gentx kh 1000000ubvt --chain-id bvchain-test-1 --moniker root
+$BVCHAIN_BIN genesis collect-gentxs

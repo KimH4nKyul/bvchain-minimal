@@ -1,18 +1,20 @@
-BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+#BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 COMMIT := $(shell git log -1 --format='%H')
 
 # don't override user values
-ifeq (,$(VERSION))
-  VERSION := $(shell git describe --exact-match 2>/dev/null)
-  # if VERSION is empty, then populate it with branch's name and raw commit hash
-  ifeq (,$(VERSION))
-    VERSION := $(BRANCH)-$(COMMIT)
-  endif
-endif
+#ifeq (,$(VERSION))
+#  VERSION := $(shell git describe --exact-match 2>/dev/null)
+#  # if VERSION is empty, then populate it with branch's name and raw commit hash
+#  ifeq (,$(VERSION))
+#    VERSION := $(BRANCH)-$(COMMIT)
+#  endif
+#endif
+
+VERSION := 1.0.0
 
 # Update the ldflags with the app, client & server names
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=mini \
-	-X github.com/cosmos/cosmos-sdk/version.AppName=minid \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=bvchain \
+	-X github.com/cosmos/cosmos-sdk/version.AppName=bvchaind \
 	-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 	-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT)
 
@@ -27,8 +29,8 @@ all: install
 install:
 	@echo "--> ensure dependencies have not been modified"
 	@go mod verify
-	@echo "--> installing minid"
-	@go install $(BUILD_FLAGS) -mod=readonly ./cmd/minid
+	@echo "--> installing bvchain"
+	@go install $(BUILD_FLAGS) -mod=readonly ./cmd/bvchain
 
 init:
 	./scripts/init.sh

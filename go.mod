@@ -1,4 +1,6 @@
-module github.com/cosmosregistry/chain-minimal
+module blockchainvalley.io/bvchain
+
+// module github.com/cosmosregistry/chain-minimal
 
 go 1.23
 
