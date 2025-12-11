@@ -17,7 +17,7 @@ This branch of `Minid` uses [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) v
 
 ## How to use
 
-In addition to learn how to build a chain thanks to `minid`, you can as well directly run `minid`.
+In addition to learn how to build a chain thanks to `bvchain`, you can as well directly run `bvchain`.
 
 ### Prerequisites
 
@@ -29,20 +29,20 @@ You are all set!
 
 ### Installation
 
-Install and run `minid`:
+Install and run `bvchain`:
 
 ```sh
-git clone git@github.com:cosmosregistry/chain-minimal.git
-cd chain-minimal
-make install # install the minid binary
+git clone git@github.com:KimH4nKyul/bvchain-minimal.git
+cd bvchain-minimal
+make install # install the bvchain binary
 make init # initialize the chain
 minid start # start the chain
 ```
 
 ### Troubleshoot
 
-After running `make install`, verify `minid` has been installed by doing `which minid`.
-If `minid` is not found, verify that your `$PATH` is configured correctly.
+After running `make install`, verify `bvchain` has been installed by doing `which bvchain`.
+If `bvchain` is not found, verify that your `$PATH` is configured correctly.
 
 ## Useful links
 
